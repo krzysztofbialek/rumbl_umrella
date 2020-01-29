@@ -8,10 +8,10 @@ defmodule InfoSys.Application do
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
-      # Starts a worker by calling: InfoSys.Worker.start_link(arg)
-      # {InfoSys.Worker, arg},
+      InfoSys.Cache,
+      {Task.Supervisor, name: InfoSys.TaskSupervisor}
     ]
-
+    
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: InfoSys.Supervisor]
